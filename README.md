@@ -11,3 +11,23 @@
     * 插入排序
     * 希尔排序
     
+* leetcode算法
+    
+    * 初级  code path:  LeetCode.primary.Main
+    
+        1. 从排序数组中删除重复项
+         https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/1/array/21/
+    
+        2. 买卖股票的最佳时机 
+         https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/description/
+         
+        3. 旋转数组
+         https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/1/array/23/
+         
+        4. 存在重复
+         https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/1/array/24/
+         
+        5. 只出现一次的数字
+        https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/1/array/25/
+    
+    
