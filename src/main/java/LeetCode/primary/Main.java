@@ -11,10 +11,10 @@ public class Main {
 
 //        int[] array = {7,1,4,5,3,6};
 //        int[] array = {1,2,3,4,5};
-        int[] array = {1, 2, 3, 2, 1};
-        Main main = new Main();
-        boolean flag = main.containsDuplicate(array);
-        System.out.println(flag);
+//        int[] array = {1, 2, 3, 2, 1};
+//        Main main = new Main();
+//        boolean flag = main.containsDuplicate(array);
+//        System.out.println(flag);
     }
 
     /**
@@ -133,5 +133,26 @@ public class Main {
     class Node {
         int val;
         Node next;
+    }
+
+
+    /**
+     * 只出现一次的数字
+     *
+     * https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/1/array/25/
+     *
+     * 要求时间复杂度为o(n)，空间复杂度 o(1)
+     *
+     *
+     * @param nums
+     * @return
+     */
+    public int singleNumber(int[] nums) {
+        int num = 0;
+        //foreach 更快一些
+        for(int i : nums){
+            num = num ^ i;
+        }
+        return num;
     }
 }
