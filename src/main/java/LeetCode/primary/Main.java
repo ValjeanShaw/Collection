@@ -11,10 +11,11 @@ public class Main {
 
 //        int[] array = {7,1,4,5,3,6};
 //        int[] array = {1,2,3,4,5};
-//        int[] array = {1, 2, 3, 2, 1};
-//        Main main = new Main();
+        int[] array = {1, 2, 0, 290, 0,78};
+        Main main = new Main();
 //        boolean flag = main.containsDuplicate(array);
 //        System.out.println(flag);
+        main.moveZeroes(array);
     }
 
     /**
@@ -154,5 +155,48 @@ public class Main {
             num = num ^ i;
         }
         return num;
+    }
+
+    /**
+     * [4,3,2,2]
+     *
+     * https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/1/array/27/
+     *
+     * 加1
+     *
+     * @param digits
+     * @return
+     */
+    public int[] plusOne(int[] digits) {
+        int n = digits.length;
+        for (int i = digits.length - 1; i >= 0; --i) {
+            if (digits[i] < 9) {
+                ++digits[i];
+                return digits;
+            }
+            digits[i] = 0;
+        }
+        int[] res = new int[n + 1];
+        res[0] = 1;
+        return res;
+    }
+
+    /**
+     * 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。
+     *
+     * @param nums
+     */
+    public void moveZeroes(int[] nums) {
+        int low=0,high =0;
+        while(high < nums.length){
+            if(nums[high] != 0){
+                nums[low++] = nums[high];
+            }
+            high++;
+        }
+        while(low < nums.length){
+            nums[low++] = 0;
+        }
+
     }
 }
