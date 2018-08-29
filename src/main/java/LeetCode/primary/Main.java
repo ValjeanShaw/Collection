@@ -1,5 +1,8 @@
 package LeetCode.primary;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author: xiaoran
  * @date: 2018-07-30 14:40
@@ -11,11 +14,11 @@ public class Main {
 
 //        int[] array = {7,1,4,5,3,6};
 //        int[] array = {1,2,3,4,5};
-        int[] array = {1, 2, 0, 290, 0,78};
+        int[] array = {3,2,4};
         Main main = new Main();
 //        boolean flag = main.containsDuplicate(array);
 //        System.out.println(flag);
-        main.moveZeroes(array);
+//        main.twoSum(array,6);
     }
 
     /**
@@ -199,4 +202,49 @@ public class Main {
         }
 
     }
+
+    /**
+     * https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/1/array/29/
+     *
+     * 给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。
+     * 你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。
+     *
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int[] twoSum(int[] nums, int target) {
+        int[] result = new int[2];
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            if(nums[i] < target){
+                if(map.get(nums[i]) == null){
+                    map.put(nums[i],i);
+                }
+            }
+        }
+
+        for(int i=0;i<nums.length;i++){
+            int now = nums[i];
+            if(now < target){
+                int gap = target - now;
+                Integer obj = map.get(gap);
+                if(obj !=null && obj != i){
+                    if(i<obj){
+                        result[0] = i;
+                        result[1] =obj;
+                    }else{
+                        result[1] = i;
+                        result[0] =obj;
+                    }
+
+                    return result;
+                }
+                map.put(now,0);
+            }
+        }
+        return null;
+    }
+
+
 }
