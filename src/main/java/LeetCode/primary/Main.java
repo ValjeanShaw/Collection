@@ -1,7 +1,10 @@
 package LeetCode.primary;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 /**
  * @author: xiaoran
@@ -16,6 +19,7 @@ public class Main {
 //        int[] array = {1,2,3,4,5};
         int[] array = {3,2,4};
         Main main = new Main();
+        main.reverseString("hellojdsafdakfnkjdsnkfnkjdsanfkjdnaskjnkjdsnaf");
 //        boolean flag = main.containsDuplicate(array);
 //        System.out.println(flag);
 //        main.twoSum(array,6);
@@ -244,6 +248,24 @@ public class Main {
             }
         }
         return null;
+    }
+
+
+    /**
+     * new String()
+     * 要比
+     * String.valueof()效率更高
+     * @param s
+     * @return
+     */
+    public String reverseString(String s) {
+        char[] chars = s.toCharArray();
+        char[] result = new char[s.length()];
+        for(int i=0,j=chars.length-1;i<chars.length;i++,j--){
+            result[j]=chars[i];
+        }
+
+        return String.valueOf(result);
     }
 
 
