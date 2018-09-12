@@ -10,8 +10,11 @@ public class Main {
         Main main = new Main();
 //        main.reverseString("hellojdsafdakfnkjdsnkfnkjdsanfkjdnaskjnkjdsnaf");
 
-        int count = main.reverse((214748364));
-        System.out.println(count);
+//        int count = main.reverse((214748369));
+//        System.out.println(count);
+
+        String str = "yekbsxznylrwamcaugrqrurvpqybkpfzwbqiysrdnrsnbftvrnszfjbkbmrctjizkjqoxqzddyfnavnhqeblfmzqgsjflghaulbadwqsyuetdelujphmlgtmkoaoijypvcajctbaumeromgejtewbwqptotrorephegyobbstvywljboeihdliknluqdpgampjyjpinxhhqexoctysfdciqjbzilnodzoihihusxluqoayenluziobxiodrfdkinkzzozmxfezfvllpdvogqqtquwcsijwachefspywdgsohqtlquhnoecccgbkrzqcprzmwvygqwddnehhi";
+        System.out.println(main.firstUniqChar(str));
 
     }
 
@@ -63,5 +66,28 @@ public class Main {
             rev = rev * 10 + pop;
         }
         return rev;
+    }
+
+    /**
+     * 字符串中的第一个唯一字符
+     *
+     * https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/5/strings/34/
+     *
+     * 桶排序，适合于范围较小的数组
+     * @param s
+     * @return
+     */
+    public int firstUniqChar(String s) {
+        int[] bucket = new int[26];
+        char[] arr = s.toCharArray();
+        for(int i=0;i<arr.length;i++){
+            bucket[arr[i]-'a']++;
+        }
+        for(int i=0;i<arr.length;i++){
+            if(bucket[arr[i] - 'a'] == 1){
+                return i;
+            }
+        }
+        return 0;
     }
 }
