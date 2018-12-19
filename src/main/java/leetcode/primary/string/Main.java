@@ -90,4 +90,40 @@ public class Main {
         }
         return 0;
     }
+
+    /**
+     * 有效的字母异位词
+     *
+     * https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/5/strings/35/
+     *
+     * @param s
+     * @param t
+     * @return
+     */
+    public boolean isAnagram(String s, String t) {
+        if(s == null || t == null){
+            return false;
+        }
+        if(s.length() != t.length()){
+            return false;
+        }
+
+        int[] sBuckt = new int[26];
+        int[] tBuckt = new int[26];
+
+        char[] sChars = s.toCharArray();
+        char[] tChars = t.toCharArray();
+
+        for(int i=0;i<sChars.length;i++){
+            sBuckt[sChars[i]-'a']++;
+            tBuckt[tChars[i]-'a']++;
+        }
+
+        for(int i=0;i<sBuckt.length;i++){
+            if(sBuckt[i] != tBuckt[i]){
+                return false;
+            }
+        }
+        return true;
+    }
 }
