@@ -13,8 +13,11 @@ public class Main {
 //        int count = main.reverse((214748369));
 //        System.out.println(count);
 
-        String str = "yekbsxznylrwamcaugrqrurvpqybkpfzwbqiysrdnrsnbftvrnszfjbkbmrctjizkjqoxqzddyfnavnhqeblfmzqgsjflghaulbadwqsyuetdelujphmlgtmkoaoijypvcajctbaumeromgejtewbwqptotrorephegyobbstvywljboeihdliknluqdpgampjyjpinxhhqexoctysfdciqjbzilnodzoihihusxluqoayenluziobxiodrfdkinkzzozmxfezfvllpdvogqqtquwcsijwachefspywdgsohqtlquhnoecccgbkrzqcprzmwvygqwddnehhi";
-        System.out.println(main.firstUniqChar(str));
+//        String str = "yekbsxznylrwamcaugrqrurvpqybkpfzwbqiysrdnrsnbftvrnszfjbkbmrctjizkjqoxqzddyfnavnhqeblfmzqgsjflghaulbadwqsyuetdelujphmlgtmkoaoijypvcajctbaumeromgejtewbwqptotrorephegyobbstvywljboeihdliknluqdpgampjyjpinxhhqexoctysfdciqjbzilnodzoihihusxluqoayenluziobxiodrfdkinkzzozmxfezfvllpdvogqqtquwcsijwachefspywdgsohqtlquhnoecccgbkrzqcprzmwvygqwddnehhi";
+//        System.out.println(main.firstUniqChar(str));
+        long startTime = System.currentTimeMillis();
+        main.isPalindrome("A man, a plan, a canal: Panama");
+        System.out.println(System.currentTimeMillis() - startTime);
 
     }
 
@@ -126,4 +129,32 @@ public class Main {
         }
         return true;
     }
+
+    /**
+     * 给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。
+     *
+     * https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/5/strings/36/
+     * @param s
+     * @return
+     */
+    public boolean isPalindrome(String s) {
+        if(s == null || s.length() == 0){
+            return false;
+        }
+
+        String regex = "[^a-zA-Z0-9]";
+        s = s.replaceAll(regex,"").toLowerCase();
+        char[] chars = s.toCharArray();
+        int low = 0;
+        int high = chars.length -1;
+        while(high >= low){
+            if(chars[low] != chars[high]){
+                return false;
+            }
+            low ++;
+            high --;
+        }
+        return true;
+    }
+
 }
