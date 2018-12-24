@@ -16,8 +16,8 @@ public class Main {
 //        String str = "yekbsxznylrwamcaugrqrurvpqybkpfzwbqiysrdnrsnbftvrnszfjbkbmrctjizkjqoxqzddyfnavnhqeblfmzqgsjflghaulbadwqsyuetdelujphmlgtmkoaoijypvcajctbaumeromgejtewbwqptotrorephegyobbstvywljboeihdliknluqdpgampjyjpinxhhqexoctysfdciqjbzilnodzoihihusxluqoayenluziobxiodrfdkinkzzozmxfezfvllpdvogqqtquwcsijwachefspywdgsohqtlquhnoecccgbkrzqcprzmwvygqwddnehhi";
 //        System.out.println(main.firstUniqChar(str));
         long startTime = System.currentTimeMillis();
-        main.isPalindrome("A man, a plan, a canal: Panama");
-        System.out.println(System.currentTimeMillis() - startTime);
+        System.out.println(main.strStr("mississippi", "issip"));
+//        System.out.println(System.currentTimeMillis() - startTime);
 
     }
 
@@ -49,8 +49,8 @@ public class Main {
      * 颠倒整数
      * <p>
      * https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/5/strings/33/
-     *
-     *采用方法，一个模10，取余数，一个乘10
+     * <p>
+     * 采用方法，一个模10，取余数，一个乘10
      *
      * @param x
      * @return
@@ -73,21 +73,22 @@ public class Main {
 
     /**
      * 字符串中的第一个唯一字符
-     *
+     * <p>
      * https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/5/strings/34/
-     *
+     * <p>
      * 桶排序，适合于范围较小的数组
+     *
      * @param s
      * @return
      */
     public int firstUniqChar(String s) {
         int[] bucket = new int[26];
         char[] arr = s.toCharArray();
-        for(int i=0;i<arr.length;i++){
-            bucket[arr[i]-'a']++;
+        for (int i = 0; i < arr.length; i++) {
+            bucket[arr[i] - 'a']++;
         }
-        for(int i=0;i<arr.length;i++){
-            if(bucket[arr[i] - 'a'] == 1){
+        for (int i = 0; i < arr.length; i++) {
+            if (bucket[arr[i] - 'a'] == 1) {
                 return i;
             }
         }
@@ -96,7 +97,7 @@ public class Main {
 
     /**
      * 有效的字母异位词
-     *
+     * <p>
      * https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/5/strings/35/
      *
      * @param s
@@ -104,10 +105,10 @@ public class Main {
      * @return
      */
     public boolean isAnagram(String s, String t) {
-        if(s == null || t == null){
+        if (s == null || t == null) {
             return false;
         }
-        if(s.length() != t.length()){
+        if (s.length() != t.length()) {
             return false;
         }
 
@@ -117,13 +118,13 @@ public class Main {
         char[] sChars = s.toCharArray();
         char[] tChars = t.toCharArray();
 
-        for(int i=0;i<sChars.length;i++){
-            sBuckt[sChars[i]-'a']++;
-            tBuckt[tChars[i]-'a']++;
+        for (int i = 0; i < sChars.length; i++) {
+            sBuckt[sChars[i] - 'a']++;
+            tBuckt[tChars[i] - 'a']++;
         }
 
-        for(int i=0;i<sBuckt.length;i++){
-            if(sBuckt[i] != tBuckt[i]){
+        for (int i = 0; i < sBuckt.length; i++) {
+            if (sBuckt[i] != tBuckt[i]) {
                 return false;
             }
         }
@@ -132,29 +133,69 @@ public class Main {
 
     /**
      * 给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。
-     *
+     * <p>
      * https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/5/strings/36/
+     *
      * @param s
      * @return
      */
     public boolean isPalindrome(String s) {
-        if(s == null || s.length() == 0){
+        if (s == null || s.length() == 0) {
             return false;
         }
 
         String regex = "[^a-zA-Z0-9]";
-        s = s.replaceAll(regex,"").toLowerCase();
+        s = s.replaceAll(regex, "").toLowerCase();
         char[] chars = s.toCharArray();
         int low = 0;
-        int high = chars.length -1;
-        while(high >= low){
-            if(chars[low] != chars[high]){
+        int high = chars.length - 1;
+        while (high >= low) {
+            if (chars[low] != chars[high]) {
                 return false;
             }
-            low ++;
-            high --;
+            low++;
+            high--;
         }
         return true;
+    }
+
+    /**
+     * 实现strStr()
+     * <p>
+     * https://leetcode-cn.com/explore/interview/card/top-interview-questions-easy/5/strings/38/
+     *
+     * @param haystack
+     * @param needle
+     * @return
+     */
+    public int strStr(String haystack, String needle) {
+        if (haystack == null || haystack.equals("")) {
+            if (needle == null || needle.equals("")) {
+                return 0;
+            } else {
+                return -1;
+            }
+        }
+        if (needle == null || needle.equals("")) {
+            return 0;
+        }
+        char[] haystackArr = haystack.toCharArray();
+        char[] needleArr = needle.toCharArray();
+
+        for (int i = 0; i < haystackArr.length - needleArr.length + 1; i++) {
+            if (haystackArr[i] == needleArr[0]) {
+                for (int j = i, k = 0; k < needleArr.length; j++, k++) {
+                    if (haystackArr[j] == needleArr[k]) {
+                        if(k == needleArr.length -1){
+                            return i;
+                        }
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        return -1;
     }
 
 }
